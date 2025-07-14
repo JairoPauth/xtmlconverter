@@ -89,8 +89,8 @@ if st.button("Add to Order"):
     if valid_unidad:
         unidad_str = f"{unidad_valor}' 0\""
         producto = ProductoSeleccionado(
-            codigo=material_opcion.codigo,
-            descripcion_base=material_opcion.descripcion_base,
+            codigo=material_opcion["codigo"],
+            descripcion_base=material_opcion["descripcion_base"],
             unidad=unidad_str,
             cantidad=cantidad
         )
