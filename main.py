@@ -20,7 +20,7 @@ side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help"))
 
 if side == "ℹ️ About":
     st.sidebar.markdown(
-        "This page allows you to generate structured XML files " #CCC
+        "This page allows you to generate structured XML files "
         "based on customized selections of construction materials. "
         "It is specially designed for engineers, technicians, or designers "
         "who work with modular structures and need to create material orders "
