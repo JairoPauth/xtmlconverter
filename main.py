@@ -13,7 +13,7 @@ if os.path.exists(ruta_banner):
     st.image(ruta_banner, use_container_width=True)
 
 # Título visible debajo del banner
-st.title("📐 Custom Material XML Generator")
+st.title("📐 Custom Material XML pruebaaaa")
 
 # ─── Sidebar ───────────────────────────────────────────
 side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help"))
