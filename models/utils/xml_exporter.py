@@ -1,10 +1,10 @@
-#este modulo se encarga de generar un archivo XML con la estructura requerida para una orden de compra.
-import xml.etree.ElementTree as ET # Importamos el módulo para manejar XML
-from datetime import date #esta librería nos permite trabajar con fechas
+# Este módulo se encarga de generar un archivo XML con la estructura requerida para una orden de compra.
+import xml.etree.ElementTree as ET  # Importamos el módulo para manejar XML
+from datetime import date  # Esta librería nos permite trabajar con fechas
 
 def generar_xml(productos: list, output_file="orden.xml"):
     orden = ET.Element("Order")
-    
+
     order_head = ET.SubElement(orden, "OrderHead")
     parameters = ET.SubElement(order_head, "Parameters")
     ET.SubElement(parameters, "Language").text = "en-GB"
@@ -23,13 +23,18 @@ def generar_xml(productos: list, output_file="orden.xml"):
     for p in productos:
         line = ET.SubElement(orden, "OrderLine", TypeCode="GDS")
         ET.SubElement(line, "LineNumber").text = str(line_number)
+
         extensions = ET.SubElement(line, "Extensions")
         ET.SubElement(extensions, "ProductType").text = "CUSTOM MATERIAL"
+
         product = ET.SubElement(line, "Product")
         ET.SubElement(product, "SuppliersProductCode").text = p.codigo
         ET.SubElement(product, "Description").text = p.descripcion
-        quantity = ET.SubElement(line, "Quantity", UOMCode="EA")
+
+        uom = getattr(p, 'uom', 'EA')  # Unidad por defecto: "EA"
+        quantity = ET.SubElement(line, "Quantity", UOMCode=uom)
         ET.SubElement(quantity, "Amount").text = str(p.cantidad)
+
         line_number += 1
 
     section_end = ET.SubElement(orden, "OrderLine", TypeCode="SECTIONEND")

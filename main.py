@@ -34,9 +34,32 @@ elif side == "❓ Help":
 
 # Lista de materiales disponibles
 materiales = [
-    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
-    MaterialDisponible("200LC", 'LALLY COLUMN 4"'),
-    MaterialDisponible("300LC", 'LALLY COLUMN 5"')
+    {"codigo": "100LC", "descripcion_base": 'LALLY COLUMN 3 1/2"'},
+    {"codigo": "10x4LC", "descripcion_base": 'LALLY COLUMN 4"'},
+    {"codigo": "76x4LC", "descripcion_base": 'LALLY COLUMN 4" 11GA'},
+    {"codigo": "V404", "descripcion_base": '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'},
+    {"codigo": "V406", "descripcion_base": '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'},
+    {"codigo": "V606", "descripcion_base": '5-1/4 X 5-1/4 2.1E 3100Fb PWT LVL'},
+    {"codigo": "V607", "descripcion_base": '5-1/4 X 7-1/4 2.1E 3100Fb PWT LVL'},
+    {"codigo": "LV07", "descripcion_base": '1-3/4x 7-1/4 2.0E 2900Fb PWT LVL 7-1/4\" PWT'},
+    {"codigo": "PWTLV", "descripcion_base": '1-1/2x 7-1/4 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV10", "descripcion_base": '1-3/4x 9-1/2 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV10", "descripcion_base": '1-3/4x 9-1/2 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV09", "descripcion_base": '1-3/4x 9-1/4 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV09", "descripcion_base": '1-1/2x 9-1/4 2.0E PWT Treated LVL Dry'},
+    {"codigo": "V410", "descripcion_base": '3.5\" x 9.5\" 2.0E 2900Fb PWT LVL'},
+    {"codigo": "V610", "descripcion_base": '5.25\" x 9.5\" 2.0E 2900Fb PWT LVL'},
+    {"codigo": "LV11", "descripcion_base": '1-3/4x 11-1/4 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV11", "descripcion_base": '1-1/2x 11-1/4 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV12", "descripcion_base": '1-3/4x 11-7/8 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV12", "descripcion_base": '1-3/4x 11-7/8 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV14", "descripcion_base": '1-3/4x 14 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV14", "descripcion_base": '1-3/4x 14 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV16", "descripcion_base": '1-3/4x 16 2.0E 2900Fb PWT LVL'},
+    {"codigo": "PWTLV16", "descripcion_base": '1-3/4x 16 2.0E PWT Treated LVL Dry'},
+    {"codigo": "LV18", "descripcion_base": '1-3/4x 18 2.0E 2900Fb PWT LVL'},
+    {"codigo": "LV20", "descripcion_base": '1-3/4x 20 2.0E 2900Fb PWT LVL'},
+    {"codigo": "LV24", "descripcion_base": '1-3/4x 24 2.0E 2900Fb PWT LVL'}
 ]
 
 if 'productos' not in st.session_state:
