@@ -78,17 +78,30 @@ if st.button("Add to Order"):
 st.subheader("Current Order")
 if st.session_state.productos:
     for p in st.session_state.productos:
-        st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}")
+        st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}") #p.cantidad con la p. para evitar confusión con la cantidad
 else:
     st.write("No products added yet.")
-
-# ─── Nuevo Pedido / Reset ────────────────────────────────────
-if st.button("🆕 New Order"):
-    st.session_state.productos = []
-    st.success("Order cleared. Ready for a new one.")
 
 # ─── Exportar XML ───────────────────────────────────────────
 if st.button("Generate XML"):
     path = generar_xml(st.session_state.productos)
     with open(path, "rb") as file:
         st.download_button("Download XML", file, file_name=path, mime="application/xml")
+
+# ─── Nuevo Pedido / Reset ────────────────────────────────────
+if 'reset_feedback' not in st.session_state:
+    st.session_state.reset_feedback = None  # puede ser "cleared" o "empty"
+
+if st.button("🆕 New Order"):
+    if st.session_state.productos:
+        st.session_state.productos = []
+        st.session_state.reset_feedback = "cleared"
+        st.rerun()
+    else:
+        st.session_state.reset_feedback = "empty"
+
+# Mostrar feedback después de presionar el botón
+if st.session_state.reset_feedback == "cleared":
+    st.success("Order cleared. Ready for a new one.")
+elif st.session_state.reset_feedback == "empty":
+    st.info("There's nothing to clear.")
