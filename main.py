@@ -34,32 +34,32 @@ elif side == "❓ Help":
 
 # Lista de materiales disponibles
 materiales = [
-    {"codigo": "100LC", "descripcion_base": 'LALLY COLUMN 3 1/2"'},
-    {"codigo": "10x4LC", "descripcion_base": 'LALLY COLUMN 4"'},
-    {"codigo": "76x4LC", "descripcion_base": 'LALLY COLUMN 4" 11GA'},
-    {"codigo": "V404", "descripcion_base": '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'},
-    {"codigo": "V406", "descripcion_base": '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'},
-    {"codigo": "V606", "descripcion_base": '5-1/4 X 5-1/4 2.1E 3100Fb PWT LVL'},
-    {"codigo": "V607", "descripcion_base": '5-1/4 X 7-1/4 2.1E 3100Fb PWT LVL'},
-    {"codigo": "LV07", "descripcion_base": '1-3/4x 7-1/4 2.0E 2900Fb PWT LVL 7-1/4\" PWT'},
-    {"codigo": "PWTLV", "descripcion_base": '1-1/2x 7-1/4 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV10", "descripcion_base": '1-3/4x 9-1/2 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV10", "descripcion_base": '1-3/4x 9-1/2 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV09", "descripcion_base": '1-3/4x 9-1/4 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV09", "descripcion_base": '1-1/2x 9-1/4 2.0E PWT Treated LVL Dry'},
-    {"codigo": "V410", "descripcion_base": '3.5\" x 9.5\" 2.0E 2900Fb PWT LVL'},
-    {"codigo": "V610", "descripcion_base": '5.25\" x 9.5\" 2.0E 2900Fb PWT LVL'},
-    {"codigo": "LV11", "descripcion_base": '1-3/4x 11-1/4 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV11", "descripcion_base": '1-1/2x 11-1/4 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV12", "descripcion_base": '1-3/4x 11-7/8 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV12", "descripcion_base": '1-3/4x 11-7/8 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV14", "descripcion_base": '1-3/4x 14 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV14", "descripcion_base": '1-3/4x 14 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV16", "descripcion_base": '1-3/4x 16 2.0E 2900Fb PWT LVL'},
-    {"codigo": "PWTLV16", "descripcion_base": '1-3/4x 16 2.0E PWT Treated LVL Dry'},
-    {"codigo": "LV18", "descripcion_base": '1-3/4x 18 2.0E 2900Fb PWT LVL'},
-    {"codigo": "LV20", "descripcion_base": '1-3/4x 20 2.0E 2900Fb PWT LVL'},
-    {"codigo": "LV24", "descripcion_base": '1-3/4x 24 2.0E 2900Fb PWT LVL'}
+    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
+    MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
+    MaterialDisponible("76x4LC", 'LALLY COLUMN 4" 11GA'),
+    MaterialDisponible("V404", '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("V406", '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("V606", '5-1/4 X 5-1/4 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("V607", '5-1/4 X 7-1/4 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("LV07", '1-3/4x 7-1/4 2.0E 2900Fb PWT LVL 7-1/4" PWT'),
+    MaterialDisponible("PWTLV", '1-1/2x 7-1/4 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV10", '1-3/4x 9-1/2 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV10", '1-3/4x 9-1/2 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV09", '1-3/4x 9-1/4 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV09", '1-1/2x 9-1/4 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("V410", '3.5" x 9.5" 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("V610", '5.25" x 9.5" 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("LV11", '1-3/4x 11-1/4 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV11", '1-1/2x 11-1/4 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV12", '1-3/4x 11-7/8 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV12", '1-3/4x 11-7/8 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV14", '1-3/4x 14 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV14", '1-3/4x 14 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV16", '1-3/4x 16 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("PWTLV16", '1-3/4x 16 2.0E PWT Treated LVL Dry'),
+    MaterialDisponible("LV18", '1-3/4x 18 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("LV20", '1-3/4x 20 2.0E 2900Fb PWT LVL'),
+    MaterialDisponible("LV24", '1-3/4x 24 2.0E 2900Fb PWT LVL'),
 ]
 
 if 'productos' not in st.session_state:
@@ -80,22 +80,22 @@ if st.button("Add to Order"):
         unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
         unidad_valor = int(unidad_limpia)
         if unidad_valor % 2 != 0 or unidad_valor <= 0:
-            st.error("Unit must be a positive multiple of 2 (e.g., 2, 4, 6, 8).")
+            st.error("Unit must be a positive multiple of 2 (e.g.,8,10).")
         else:
             valid_unidad = True
     except ValueError:
         st.error("Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
-    if valid_unidad:
-        unidad_str = f"{unidad_valor}' 0\""
-        producto = ProductoSeleccionado(
-            codigo=material_opcion["codigo"],
-            descripcion_base=material_opcion["descripcion_base"],
-            unidad=unidad_str,
-            cantidad=cantidad
-        )
-        st.session_state.productos.append(producto)
-        st.success("Product added.")
+if valid_unidad:
+    unidad_str = f"{unidad_valor}' 0\""
+    producto = ProductoSeleccionado(
+        codigo=material_opcion.codigo,
+        descripcion_base=material_opcion.descripcion_base,
+        unidad=unidad_str,
+        cantidad=cantidad
+    )
+    st.session_state.productos.append(producto)
+    st.success("Product added.")
 
 # ─── Lista actual ───────────────────────────────────────────
 st.subheader("Current Order")
