@@ -82,6 +82,11 @@ if st.session_state.productos:
 else:
     st.write("No products added yet.")
 
+# ─── Nuevo Pedido / Reset ────────────────────────────────────
+if st.button("🆕 New Order"):
+    st.session_state.productos = []
+    st.success("Order cleared. Ready for a new one.")
+
 # ─── Exportar XML ───────────────────────────────────────────
 if st.button("Generate XML"):
     path = generar_xml(st.session_state.productos)
