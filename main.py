@@ -86,6 +86,7 @@ cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 valid_unidad = False
 
 if st.button("Add to Order"):
+    valid_unidad = False
     if not unidad_input or unidad_input.strip() == "":
         st.write("⚠️ Please enter a length value.")
     else:
@@ -109,17 +110,6 @@ if st.button("Add to Order"):
         )
         st.session_state.productos.append(producto)
         st.success("Product added.")
-
-if valid_unidad:
-    unidad_str = f"{unidad_valor}' 0\""
-    producto = ProductoSeleccionado(
-        codigo=material_opcion.codigo,
-        descripcion_base=material_opcion.descripcion,
-        unidad=unidad_str,
-        cantidad=cantidad
-    )
-    st.session_state.productos.append(producto)
-    st.success("Product added.")
 
 # ─── Lista actual ───────────────────────────────────────────
 st.subheader("Current Order")
