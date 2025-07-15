@@ -35,19 +35,7 @@ def generar_xml(productos: list, output_file="orden.xml"):
         # Lógica especial para LVL
         if "LVL" in p.descripcion.upper():
             uom = "LF"
-            # Extrae el primer número entero de la unidad, sin importar el formato
-            try:
-                unidad_str = str(p.unidad)
-                # Log para depuración
-                # print(f"DEBUG unidad: {unidad_str}")
-                match = re.search(r"\d+", unidad_str)
-                if match:
-                    amount = int(match.group())
-                else:
-                    amount = 1
-            except Exception as e:
-                # print(f"Error parseando unidad: {e}")
-                amount = 1
+            amount = int(p.unidad)  # Usa el número directamente
         else:
             uom = getattr(p, 'uom', 'EA')
             amount = p.cantidad
