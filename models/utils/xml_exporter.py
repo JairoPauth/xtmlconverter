@@ -38,7 +38,8 @@ def generar_xml(productos: list, output_file="orden.xml"):
             try:
                 amount = int(p.unidad.split("'")[0].strip())
             except Exception:
-                amount = 1  # valor por defecto si falla el parseo
+                # Si falla el parseo, usa el valor original como string
+                amount = p.unidad
         else:
             uom = getattr(p, 'uom', 'EA')
             amount = p.cantidad
