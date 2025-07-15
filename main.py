@@ -88,15 +88,18 @@ valid_unidad = False
 unidad_limpia = ""
 
 if st.button("Add to Order"):
-    try:
-        unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
-        unidad_valor = int(unidad_limpia)
-        if unidad_valor % 2 != 0 or unidad_valor <= 0:
-            st.error("Unit must be a positive multiple of 2 (e.g.,8,10).")
-        else:
-            valid_unidad = True
-    except ValueError:
-        st.error("Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
+    if not unidad_input or unidad_input.strip() == "":
+        st.error("Please enter a length value.")
+    else:
+        try:
+            unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
+            unidad_valor = int(unidad_limpia)
+            if unidad_valor <= 0 or unidad_valor % 2 != 0:
+                st.error("Unit must be a positive multiple of 2 (e.g., 8, 10).")
+            else:
+                valid_unidad = True
+        except ValueError:
+            st.error("Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
 if valid_unidad:
     unidad_str = f"{unidad_valor}' 0\""
