@@ -67,7 +67,7 @@ if 'productos' not in st.session_state:
 
 st.subheader("Add Product")
 
-material_opcion = st.selectbox("Select material:", materiales)
+material_opcion = st.selectbox("Material", materiales)
 unidad_input = st.text_input("Enter the lenght in feet (example: 2, 6, 10...)")
 cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
