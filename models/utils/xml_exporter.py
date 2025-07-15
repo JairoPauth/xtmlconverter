@@ -1,6 +1,7 @@
 # Este módulo se encarga de generar un archivo XML con la estructura requerida para una orden de compra.
 import xml.etree.ElementTree as ET  # Importamos el módulo para manejar XML
 from datetime import date  # Esta librería nos permite trabajar con fechas
+import re
 
 def generar_xml(productos: list, output_file="orden.xml"):
     orden = ET.Element("Order")
@@ -34,11 +35,11 @@ def generar_xml(productos: list, output_file="orden.xml"):
         # Lógica especial para LVL
         if "LVL" in p.descripcion.upper():
             uom = "LF"
-            # Extrae la longitud en pies del campo unidad (ejemplo: "20' 0\"")
+            # Extrae el primer número entero de la unidad, sin importar el formato
             try:
-                amount = int(str(p.unidad).split("'")[0].strip())
+                match = re.search(r"\d+", str(p.unidad))
+                amount = int(match.group()) if match else 1
             except Exception:
-                # Si falla el parseo, usa 1 como valor por defecto
                 amount = 1
         else:
             uom = getattr(p, 'uom', 'EA')
