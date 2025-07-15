@@ -32,6 +32,15 @@ elif side == "❓ Help":
         "📧 jairo.pauth@bldr.com"
     )
 
+class MaterialDisponible:
+    def __init__(self, codigo, descripcion_base):
+        self.codigo = codigo
+        self.descripcion = descripcion_base
+
+materiales = [
+    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
+    MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
+]
 # Lista de materiales disponibles
 materiales = [
     MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
@@ -66,13 +75,12 @@ if 'productos' not in st.session_state:
     st.session_state.productos = []
 
 st.subheader("Add Product")
-
 material_opcion = st.selectbox(
     "Material",
     materiales,
     format_func=lambda m: m.descripcion
 )
-unidad_input = st.text_input("Enter the lenght in feet (example: 2, 6, 10...)")
+unidad_input = st.text_input("Enter the length in feet (example: 2, 6, 10...)")
 cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
 # Validación
@@ -94,7 +102,7 @@ if valid_unidad:
     unidad_str = f"{unidad_valor}' 0\""
     producto = ProductoSeleccionado(
         codigo=material_opcion.codigo,
-        descripcion_base=material_opcion.descripcion_base,
+        descripcion_base=material_opcion.descripcion,
         unidad=unidad_str,
         cantidad=cantidad
     )
