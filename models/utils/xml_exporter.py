@@ -36,10 +36,10 @@ def generar_xml(productos: list, output_file="orden.xml"):
             uom = "LF"
             # Extrae la longitud en pies del campo unidad (ejemplo: "20' 0\"")
             try:
-                amount = int(p.unidad.split("'")[0].strip())
+                amount = int(str(p.unidad).split("'")[0].strip())
             except Exception:
-                # Si falla el parseo, usa el valor original como string
-                amount = p.unidad
+                # Si falla el parseo, usa 1 como valor por defecto
+                amount = 1
         else:
             uom = getattr(p, 'uom', 'EA')
             amount = p.cantidad
