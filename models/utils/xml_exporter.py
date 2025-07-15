@@ -31,9 +31,20 @@ def generar_xml(productos: list, output_file="orden.xml"):
         ET.SubElement(product, "SuppliersProductCode").text = p.codigo
         ET.SubElement(product, "Description").text = p.descripcion
 
-        uom = getattr(p, 'uom', 'EA')  # Unidad por defecto: "EA"
+        # Lógica especial para LVL
+        if "LVL" in p.descripcion.upper():
+            uom = "LF"
+            # Extrae la longitud en pies del campo unidad (ejemplo: "20' 0\"")
+            try:
+                amount = int(p.unidad.split("'")[0].strip())
+            except Exception:
+                amount = 1  # valor por defecto si falla el parseo
+        else:
+            uom = getattr(p, 'uom', 'EA')
+            amount = p.cantidad
+
         quantity = ET.SubElement(line, "Quantity", UOMCode=uom)
-        ET.SubElement(quantity, "Amount").text = str(p.cantidad)
+        ET.SubElement(quantity, "Amount").text = str(amount)
 
         line_number += 1
 

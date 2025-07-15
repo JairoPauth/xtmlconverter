@@ -37,10 +37,6 @@ class MaterialDisponible:
         self.codigo = codigo
         self.descripcion = descripcion_base
 
-materiales = [
-    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
-    MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
-]
 # Lista de materiales disponibles
 materiales = [
     MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
