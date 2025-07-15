@@ -37,9 +37,16 @@ def generar_xml(productos: list, output_file="orden.xml"):
             uom = "LF"
             # Extrae el primer número entero de la unidad, sin importar el formato
             try:
-                match = re.search(r"\d+", str(p.unidad))
-                amount = int(match.group()) if match else 1
-            except Exception:
+                unidad_str = str(p.unidad)
+                # Log para depuración
+                # print(f"DEBUG unidad: {unidad_str}")
+                match = re.search(r"\d+", unidad_str)
+                if match:
+                    amount = int(match.group())
+                else:
+                    amount = 1
+            except Exception as e:
+                # print(f"Error parseando unidad: {e}")
                 amount = 1
         else:
             uom = getattr(p, 'uom', 'EA')
