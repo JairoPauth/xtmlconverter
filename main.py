@@ -13,7 +13,7 @@ if os.path.exists(ruta_banner):
     st.image(ruta_banner, use_container_width=True)
 
 # Título visible debajo del banner
-st.title("📐 Custom Material XML pruebaaaa")
+st.title("📐 Custom Material XML")
 
 # ─── Sidebar ───────────────────────────────────────────
 side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help"))
@@ -24,7 +24,9 @@ if side == "ℹ️ About":
         "based on customized selections of construction materials. "
         "It is specially designed for engineers, technicians, or designers "
         "who work with modular structures and need to create material orders "
-        "without relying on third-party software like Mitek for small projects."
+        "without relying on third-party software like Mitek for small projects. "
+        "The main goal is to optimize time and efficiency in beam calculation projects for the New England team. "
+        "Note: In this version, hangers are not included and must be added manually according to the project's needs."
     )
 elif side == "❓ Help":
     st.sidebar.markdown(
@@ -76,7 +78,7 @@ material_opcion = st.selectbox(
     materiales,
     format_func=lambda m: m.descripcion
 )
-unidad_input = st.text_input("Enter the length in feet (example: 2, 6, 10...)")
+unidad_input = st.text_input("Enter the length in feet (example:10,12...)")
 cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
 valid_unidad = False
