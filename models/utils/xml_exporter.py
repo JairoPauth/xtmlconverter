@@ -35,7 +35,7 @@ def generar_xml(productos: list, output_file="orden.xml"):
         # Lógica especial para LVL
         if "LVL" in p.descripcion.upper():
             uom = "LF"
-            amount = int(p.unidad)  # Usa el número directamente
+            amount = int(p.unidad) * int(p.cantidad)  # Multiplica longitud por cantidad
         else:
             uom = getattr(p, 'uom', 'EA')
             amount = p.cantidad
