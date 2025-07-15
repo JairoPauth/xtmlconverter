@@ -97,11 +97,10 @@ if st.button("Add to Order"):
             st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
     if valid_unidad:
-        unidad_str = f"{unidad_valor}' 0\""
         producto = ProductoSeleccionado(
             codigo=material_opcion.codigo,
             descripcion_base=material_opcion.descripcion,
-            unidad=unidad_str,
+            unidad=unidad_valor,  # <-- Guarda el número, no el string
             cantidad=cantidad
         )
         st.session_state.productos.append(producto)
