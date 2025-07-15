@@ -16,7 +16,7 @@ if os.path.exists(ruta_banner):
 st.title("📐 Custom Material XML")
 
 # ─── Sidebar ───────────────────────────────────────────
-side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help"))
+side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help", "⚠️ Limitations"))
 
 if side == "ℹ️ About":
     st.sidebar.markdown(
@@ -25,13 +25,23 @@ if side == "ℹ️ About":
         "It is specially designed for engineers, technicians, or designers "
         "who work with modular structures and need to create material orders "
         "without relying on third-party software like Mitek for small projects. "
-        "The main goal is to optimize time and efficiency in beam calculation projects for the New England team. "
-        "Note: In this version, hangers are not included and must be added manually according to the project's needs."
+        "The main goal is to optimize time and efficiency in beam calculation projects for the New England team."
     )
+
 elif side == "❓ Help":
     st.sidebar.markdown(
         "For support, please contact:\n\n"
         "📧 jairo.pauth@bldr.com"
+    )
+
+elif side == "⚠️ Limitations":
+    st.sidebar.markdown(
+        "### ⚠️ Current Limitations\n"
+        "- Hangers are **not included** in this version.\n"
+        "- Hangers must be added **manually** based on the project's needs.\n"
+        "- Only supports a predefined list of structural materials.\n"
+        "- Not integrated yet with MiTek or any external systems.\n"
+        "- No automatic unit validation for custom materials beyond the default list."
     )
 
 class MaterialDisponible:
@@ -78,7 +88,7 @@ material_opcion = st.selectbox(
     materiales,
     format_func=lambda m: m.descripcion
 )
-unidad_input = st.text_input("Enter the length in feet (example:10,12...)")
+unidad_input = st.text_input("Enter the length in feet (example:10...)")
 cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
 valid_unidad = False
