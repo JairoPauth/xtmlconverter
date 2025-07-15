@@ -4,6 +4,7 @@ class ProductoSeleccionado:
         self.codigo = codigo
         self.descripcion = f"{descripcion_base} ({unidad})"
         self.cantidad = cantidad
+        self.unidad = unidad
 
     def to_dict(self):
         return {
