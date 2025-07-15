@@ -100,7 +100,7 @@ if st.button("Add to Order"):
         producto = ProductoSeleccionado(
             codigo=material_opcion.codigo,
             descripcion_base=material_opcion.descripcion,
-            unidad=unidad_valor,  # <-- Guarda el número, no el string
+            unidad=unidad_valor,  # <-- debe ser int, NO string
             cantidad=cantidad
         )
         st.session_state.productos.append(producto)
