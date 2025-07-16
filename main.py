@@ -51,6 +51,7 @@ class MaterialDisponible:
 
 # Lista de materiales disponibles
 materiales = [
+    MaterialDisponible("TEXT", '1st Floor material'),
     MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
     MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
     MaterialDisponible("76x4LC", 'LALLY COLUMN 4" 11GA'),
@@ -82,50 +83,67 @@ materiales = [
     MaterialDisponible("LV24", '1-3/4x 24 2.0E 2900Fb PWT LVL'),
 ]
 
-if 'productos' not in st.session_state:
-    st.session_state.productos = []
+st.subheader("Add Item to Order")
 
-st.subheader("Add Product")
 material_opcion = st.selectbox(
-    "Material",
+    "Select Material or Insert Narrative",
     materiales,
     format_func=lambda m: m.descripcion
 )
-unidad_input = st.text_input("Enter the length in feet (example:10...)")
-cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
-valid_unidad = False
+if material_opcion.codigo == "TEXT":
+    texto_narrativo = st.text_input("Enter narrative text")
 
-if st.button("Add to Order"):
+    if st.button("Add to Order"):
+        if texto_narrativo.strip():
+            producto_texto = ProductoSeleccionado(
+                codigo="",  # sin código
+                descripcion_base=texto_narrativo,
+                es_texto=True
+            )
+            st.session_state.productos.append(producto_texto)
+            st.success("Narrative line added.")
+        else:
+            st.warning("Please enter some text.")
+else:
+    unidad_input = st.text_input("Enter the length in feet (example: 10...)")
+    cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
+
     valid_unidad = False
-    if not unidad_input or unidad_input.strip() == "":
-        st.write("⚠️ Please enter a length value.")
-    else:
-        try:
-            unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
-            unidad_valor = int(unidad_limpia)
-            if unidad_valor <= 0 or unidad_valor % 2 != 0:
-                st.write("⚠️ Unit must be a positive multiple of 2 (e.g., 8, 10).")
-            else:
-                valid_unidad = True
-        except ValueError:
-            st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
-    if valid_unidad:
-        producto = ProductoSeleccionado(
-            codigo=material_opcion.codigo,
-            descripcion_base=material_opcion.descripcion,
-            unidad=unidad_valor,  # <-- debe ser int, NO string
-            cantidad=cantidad
-        )
-        st.session_state.productos.append(producto)
-        st.success("Product added.")
+    if st.button("Add to Order"):
+        if not unidad_input or unidad_input.strip() == "":
+            st.write("⚠️ Please enter a length value.")
+        else:
+            try:
+                unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
+                unidad_valor = int(unidad_limpia)
+                if unidad_valor <= 0 or unidad_valor % 2 != 0:
+                    st.write("⚠️ Unit must be a positive multiple of 2 (e.g., 8, 10).")
+                else:
+                    valid_unidad = True
+            except ValueError:
+                st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
+
+        if valid_unidad:
+            producto = ProductoSeleccionado(
+                codigo=material_opcion.codigo,
+                descripcion_base=material_opcion.descripcion,
+                unidad=unidad_valor,
+                cantidad=cantidad
+            )
+            st.session_state.productos.append(producto)
+            st.success("Product added.")
+
 
 # ─── Lista actual ───────────────────────────────────────────
 st.subheader("Current Order")
 if st.session_state.productos:
     for p in st.session_state.productos:
-        st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}") #p.cantidad con la p. para evitar confusión con la cantidad
+        if getattr(p, "es_texto", False):
+            st.markdown(f"📝 *{p.descripcion}*")
+        else:
+            st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}")
 else:
     st.write("No products added yet.")
 
