@@ -99,8 +99,12 @@ if material_opcion.codigo == "TEXT":
             producto_texto = ProductoSeleccionado(
                 codigo="",  # sin código
                 descripcion_base=texto_narrativo,
+                unidad="0",  # obligatorio
+                cantidad=0,  # obligatorio
                 es_texto=True
             )
+            if 'productos' not in st.session_state:
+                st.session_state.productos = []
             st.session_state.productos.append(producto_texto)
             st.success("Narrative line added.")
         else:
