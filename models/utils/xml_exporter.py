@@ -36,12 +36,16 @@ def generar_xml(productos: list, output_file="orden.xml"):
         if "LVL" in p.descripcion.upper():
             uom = "LF"
             amount = int(p.unidad) * int(p.cantidad)  # Multiplica longitud por cantidad
+            tally = f"{p.cantidad}/{p.unidad}"
         else:
             uom = getattr(p, 'uom', 'EA')
             amount = p.cantidad
+            tally = None
 
         quantity = ET.SubElement(line, "Quantity", UOMCode=uom)
         ET.SubElement(quantity, "Amount").text = str(amount)
+        if tally:
+            ET.SubElement(quantity, "Tally").text = tally
 
         line_number += 1
 
