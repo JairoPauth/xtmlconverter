@@ -137,6 +137,12 @@ else:
 
 
 # ─── Lista actual ───────────────────────────────────────────
+
+# Asegurarse de que 'productos' exista
+if 'productos' not in st.session_state:
+    st.session_state.productos = []
+
+# Luego puedes usarlo sin error
 st.subheader("Current Order")
 if st.session_state.productos:
     for p in st.session_state.productos:
