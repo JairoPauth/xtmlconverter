@@ -1,18 +1,24 @@
 #Esta clase representa un producto seleccionado por el usuario en el sistema.
 class ProductoSeleccionado:
-    def __init__(self, codigo: str, descripcion_base: str, unidad: str = "0", cantidad: int = 0, es_texto: bool = False):
+    def __init__(self, codigo: str, descripcion_base: str, unidad="0", cantidad: int = 0, es_texto: bool = False):
         self.codigo = codigo
-        self.unidad = int(unidad) if unidad.isdigit() else 0
+
+        if isinstance(unidad, str) and unidad.isdigit():
+            self.unidad = int(unidad)
+        elif isinstance(unidad, int):
+            self.unidad = unidad
+        else:
+            self.unidad = 0
+
         self.cantidad = cantidad
         self.es_texto = es_texto
 
-        # Agregar longitud solo a productos que NO son LVL y si no es texto
         if es_texto:
             self.descripcion = descripcion_base
         elif "LVL" in descripcion_base.upper():
-            self.descripcion = descripcion_base  # sin unidad
+            self.descripcion = descripcion_base
         else:
-            self.descripcion = f"{descripcion_base} ({unidad})"
+            self.descripcion = f"{descripcion_base} ({self.unidad})"
 
     def to_dict(self):
         return {
