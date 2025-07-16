@@ -137,10 +137,18 @@ else:
 
 
 # ─── Lista actual ───────────────────────────────────────────
+# Asegurarse de que 'productos' exista
+if 'productos' not in st.session_state:
+    st.session_state.productos = []
+
+# Luego puedes usarlo sin error
 st.subheader("Current Order")
 if st.session_state.productos:
     for p in st.session_state.productos:
-        st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}")
+        if getattr(p, "es_texto", False):
+            st.markdown(f"📝 *{p.descripcion}*")
+        else:
+            st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}")
 else:
     st.write("No products added yet.")
 # ─── Exportar XML ───────────────────────────────────────────
