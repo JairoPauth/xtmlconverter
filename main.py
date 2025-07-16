@@ -3,6 +3,8 @@ import streamlit as st
 import os
 from models.material import MaterialDisponible
 from models.producto import ProductoSeleccionado
+if 'productos' not in st.session_state:
+    st.session_state.productos = []
 from models.utils.xml_exporter import generar_xml
 
 st.set_page_config(page_title="Custom Material XML Generator", page_icon="📐")
