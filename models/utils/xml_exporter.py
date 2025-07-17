@@ -24,7 +24,7 @@ def generar_xml(productos: list, output_file="orden.xml"):
     for p in productos:
         # Si es una línea de texto, crear un OrderLine de tipo TEXT y saltar el resto
         if getattr(p, "es_texto", False):
-            line = ET.SubElement(orden, "OrderLine", TypeCode="TEXT")
+            line = ET.SubElement(orden, "OrderLine", TypeCode="SECTIONSTART")
             ET.SubElement(line, "LineNumber").text = str(line_number)
             ET.SubElement(line, "Narrative").text = p.descripcion
             line_number += 1

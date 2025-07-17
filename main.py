@@ -51,12 +51,12 @@ class MaterialDisponible:
 
 # Lista de materiales disponibles
 materiales = [
-    MaterialDisponible("TEXT", '1st Floor material'),
+    MaterialDisponible("TEXT", 'TEXT LINE'),
     MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
     MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
     MaterialDisponible("76x4LC", 'LALLY COLUMN 4" 11GA'),
-    MaterialDisponible("68LCP", '6" X 8" SPRINFIELD PLATE FOR 3 -1/2" DIA.COLUMN'),
-    MaterialDisponible("68LCP4", '6" X 8" SPRINFIELD PLATE FOR 4" DIA.COLUMN'),
+    MaterialDisponible("68LCP", '6" X 8" SPRINGFIELD PLATE FOR 3 -1/2" DIA.COLUMN'),
+    MaterialDisponible("68LCP4", '6" X 8" SPRINGIELD PLATE FOR 4" DIA.COLUMN'),
     MaterialDisponible("V404", '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V406", '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V606", '5-1/4 X 5-1/4 2.1E 3100Fb PWT LVL'),
@@ -92,7 +92,7 @@ material_opcion = st.selectbox(
 )
 
 if material_opcion.codigo == "TEXT":
-    texto_narrativo = st.text_input("Enter narrative text")
+    texto_narrativo = st.text_input("EnteR text Line")
 
     if st.button("Add to Order"):
         if texto_narrativo.strip():
