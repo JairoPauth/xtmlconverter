@@ -59,7 +59,7 @@ materiales = [
     MaterialDisponible("68LCP4", '6" X 8" SPRINGIELD PLATE FOR 4" DIA.COLUMN'),
     MaterialDisponible("V404", '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V406", '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'),
-    MaterialDisponible("V606", '5-1/4 X 5-1/4 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("V606", '5-1/2 X 5-1/4 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V607", '5-1/4 X 7-1/4 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("LV06", '1-3/4x 5-1/2 2.0E 2900Fb PWT LVL'),
     MaterialDisponible("LV07", '1-3/4x 7-1/4 2.0E 2900Fb PWT LVL 7-1/4" PWT'),
