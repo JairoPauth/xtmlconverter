@@ -52,13 +52,17 @@ class MaterialDisponible:
 # Lista de materiales disponibles
 materiales = [
     MaterialDisponible("TEXT", 'TEXT LINE'),
-    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2"'),
+    MaterialDisponible("76LC", 'LALLY COLUMN 3 1/2 (07 06 ft)"'),
+    MaterialDisponible("80LC", 'LALLY COLUMN 3 1/2 (8ft)"'),
+    MaterialDisponible("100LC", 'LALLY COLUMN 3 1/2 (10ft)"'),
+    MaterialDisponible("120LC", 'LALLY COLUMN 3 1/2 (12ft)"'),
     MaterialDisponible("10x4LC", 'LALLY COLUMN 4"'),
     MaterialDisponible("76x4LC", 'LALLY COLUMN 4" 11GA'),
     MaterialDisponible("68LCP", '6" X 8" SPRINGFIELD PLATE FOR 3 -1/2" DIA.COLUMN'),
     MaterialDisponible("68LCP4", '6" X 8" SPRINGIELD PLATE FOR 4" DIA.COLUMN'),
     MaterialDisponible("V404", '3-1/2 X 3-1/2 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V406", '3-1/2 X 5-1/2 2.1E 3100Fb PWT LVL'),
+    MaterialDisponible("V407", '3-1/2 X 7-1/4 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V606", '5-1/2 X 5-1/4 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("V607", '5-1/4 X 7-1/4 2.1E 3100Fb PWT LVL'),
     MaterialDisponible("LV06", '1-3/4x 5-1/2 2.0E 2900Fb PWT LVL'),
