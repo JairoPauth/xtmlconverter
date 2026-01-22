@@ -13,7 +13,7 @@ if os.path.exists(ruta_banner):
     st.image(ruta_banner, use_container_width=True)
 
 # Título visible debajo del banner
-st.title("📐 Custom Material XML hola")
+st.title("📐 Custom Material XML")
 
 # ─── Sidebar ───────────────────────────────────────────
 side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help", "⚠️ Limitations"))
@@ -89,59 +89,66 @@ materiales = [
 
 st.subheader("Add Item to Order")
 
+# ─── Selección de Material ───────────────────────────────────────────
+# NUEVO: usamos st.session_state para mantener la selección entre recargas
+if 'material_opcion' not in st.session_state:
+    st.session_state.material_opcion = materiales[0]  # default al primero de la lista
+
+# NUEVO: selectbox con key para recordar la opción seleccionada
 material_opcion = st.selectbox(
     "Select Material or Insert Narrative",
     materiales,
-    format_func=lambda m: m.descripcion
+    format_func=lambda m: m.descripcion,
+    key="material_select"  # clave para mantener la selección
 )
 
+# ─── Manejo de Text Line ─────────────────────────────────────────────
 if material_opcion.codigo == "TEXT":
-    texto_narrativo = st.text_input("EnteR text Line")
-
+    texto_narrativo = st.text_input("Enter text Line")
+    
+    # Usamos el mismo botón que ya tenías
     if st.button("Add to Order"):
         if texto_narrativo.strip():
             producto_texto = ProductoSeleccionado(
                 codigo="",  # sin código
                 descripcion_base=texto_narrativo,
-                unidad="0",  # obligatorio
-                cantidad=0,  # obligatorio
+                unidad="0",
+                cantidad=0,
                 es_texto=True
             )
+            # NUEVO: inicializa lista si no existe
             if 'productos' not in st.session_state:
                 st.session_state.productos = []
             st.session_state.productos.append(producto_texto)
             st.success("Narrative line added.")
         else:
             st.warning("Please enter some text.")
+
+# ─── Manejo de Productos Normales ────────────────────────────────────
 else:
     unidad_input = st.text_input("Enter the length in feet (example: 10...)")
     cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
 
-    valid_unidad = False
-
+    # Usamos el mismo botón que ya tenías
     if st.button("Add to Order"):
-        if not unidad_input or unidad_input.strip() == "":
-            st.write("⚠️ Please enter a length value.")
-        else:
-            try:
-                unidad_limpia = unidad_input.strip().replace("'", "").replace('"', "")
-                unidad_valor = int(unidad_limpia)
-                if unidad_valor <= 0 or unidad_valor % 2 != 0:
-                    st.write("⚠️ Unit must be a positive multiple of 2 (e.g., 8, 10).")
-                else:
-                    valid_unidad = True
-            except ValueError:
-                st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
-
-        if valid_unidad:
-            producto = ProductoSeleccionado(
-                codigo=material_opcion.codigo,
-                descripcion_base=material_opcion.descripcion,
-                unidad=unidad_valor,
-                cantidad=cantidad
-            )
-            st.session_state.productos.append(producto)
-            st.success("Product added.")
+        try:
+            unidad_valor = int(unidad_input.strip())
+            if unidad_valor <= 0 or unidad_valor % 2 != 0:
+                st.write("⚠️ Unit must be a positive multiple of 2 (e.g., 8, 10).")
+            else:
+                producto = ProductoSeleccionado(
+                    codigo=material_opcion.codigo,
+                    descripcion_base=material_opcion.descripcion,
+                    unidad=unidad_valor,
+                    cantidad=cantidad
+                )
+                # NUEVO: inicializa lista si no existe
+                if 'productos' not in st.session_state:
+                    st.session_state.productos = []
+                st.session_state.productos.append(producto)
+                st.success("Product added.")
+        except ValueError:
+            st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
 
 # ─── Lista actual ───────────────────────────────────────────
