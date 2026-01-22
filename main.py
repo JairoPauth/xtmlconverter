@@ -13,7 +13,7 @@ if os.path.exists(ruta_banner):
     st.image(ruta_banner, use_container_width=True)
 
 # Título visible debajo del banner
-st.title("📐 Custom Material XML test ")
+st.title("📐 Custom Material XML test d ")
 
 # ─── Sidebar ───────────────────────────────────────────
 side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help", "⚠️ Limitations"))
@@ -89,24 +89,26 @@ materiales = [
 
 st.subheader("Add Item to Order")
 
-# ─── Selección de Material ───────────────────────────────────────────
-# NUEVO: usamos st.session_state para mantener la selección entre recargas
-if 'material_opcion' not in st.session_state:
-    st.session_state.material_opcion = materiales[0]  # default al primero de la lista
+# ─── Selección de Material (corregida) ──────────────────────────────
+material_dict = {m.codigo: m for m in materiales}
 
-# NUEVO: selectbox con key para recordar la opción seleccionada
-material_opcion = st.selectbox(
+if 'selected_code' not in st.session_state:
+    st.session_state.selected_code = "TEXT"
+
+selected_code = st.selectbox(
     "Select Material or Insert Narrative",
-    materiales,
-    format_func=lambda m: m.descripcion,
-    key="material_select"  # clave para mantener la selección
+    options=[m.codigo for m in materiales],
+    format_func=lambda c: material_dict[c].descripcion,
+    index=[m.codigo for m in materiales].index(st.session_state.selected_code),
+    key="material_select"
 )
+
+st.session_state.selected_code = selected_code
+material_opcion = material_dict[selected_code]  # objeto actual
 
 # ─── Manejo de Text Line ─────────────────────────────────────────────
 if material_opcion.codigo == "TEXT":
     texto_narrativo = st.text_input("Enter text Line")
-    
-    # Usamos el mismo botón que ya tenías
     if st.button("Add to Order"):
         if texto_narrativo.strip():
             producto_texto = ProductoSeleccionado(
@@ -116,20 +118,15 @@ if material_opcion.codigo == "TEXT":
                 cantidad=0,
                 es_texto=True
             )
-            # NUEVO: inicializa lista si no existe
             if 'productos' not in st.session_state:
                 st.session_state.productos = []
             st.session_state.productos.append(producto_texto)
             st.success("Narrative line added.")
         else:
             st.warning("Please enter some text.")
-
-# ─── Manejo de Productos Normales ────────────────────────────────────
 else:
     unidad_input = st.text_input("Enter the length in feet (example: 10...)")
     cantidad = st.number_input("Quantity", min_value=1, value=1, step=1)
-
-    # Usamos el mismo botón que ya tenías
     if st.button("Add to Order"):
         try:
             unidad_valor = int(unidad_input.strip())
@@ -142,7 +139,6 @@ else:
                     unidad=unidad_valor,
                     cantidad=cantidad
                 )
-                # NUEVO: inicializa lista si no existe
                 if 'productos' not in st.session_state:
                     st.session_state.productos = []
                 st.session_state.productos.append(producto)
@@ -150,13 +146,10 @@ else:
         except ValueError:
             st.write("⚠️ Unit must be a whole number in feet (e.g., 2, 4, 6, 8).")
 
-
 # ─── Lista actual ───────────────────────────────────────────
-# Asegurarse de que 'productos' exista
 if 'productos' not in st.session_state:
     st.session_state.productos = []
 
-# Luego puedes usarlo sin error
 st.subheader("Current Order")
 if st.session_state.productos:
     for p in st.session_state.productos:
@@ -166,6 +159,7 @@ if st.session_state.productos:
             st.write(f"{p.cantidad} x {p.codigo} - {p.descripcion}")
 else:
     st.write("No products added yet.")
+
 # ─── Exportar XML ───────────────────────────────────────────
 if st.button("Generate XML"):
     path = generar_xml(st.session_state.productos)
@@ -174,7 +168,7 @@ if st.button("Generate XML"):
 
 # ─── Nuevo Pedido / Reset ────────────────────────────────────
 if 'reset_feedback' not in st.session_state:
-    st.session_state.reset_feedback = None  # puede ser "cleared" o "empty"
+    st.session_state.reset_feedback = None
 
 if st.button("🆕 New Order"):
     if st.session_state.productos:
@@ -184,7 +178,6 @@ if st.button("🆕 New Order"):
     else:
         st.session_state.reset_feedback = "empty"
 
-# Mostrar feedback después de presionar el botón
 if st.session_state.reset_feedback == "cleared":
     st.success("Order cleared. Ready for a new one.")
 elif st.session_state.reset_feedback == "empty":
