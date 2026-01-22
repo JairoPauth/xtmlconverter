@@ -5,7 +5,7 @@ from models.material import MaterialDisponible
 from models.producto import ProductoSeleccionado
 from models.utils.xml_exporter import generar_xml
 
-st.set_page_config(page_title="Custom Material XML Generator test ", page_icon="📐")
+st.set_page_config(page_title="Custom Material XML Generator testjjifajsdifjasdjij ", page_icon="📐")
 
 # Mostrar banner si existe
 ruta_banner = os.path.join("static", "banner_inicio.png")
