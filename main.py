@@ -5,7 +5,7 @@ from models.material import MaterialDisponible
 from models.producto import ProductoSeleccionado
 from models.utils.xml_exporter import generar_xml
 
-st.set_page_config(page_title=" gsfdgfdgCustom Material XML Generator", page_icon="📐")
+st.set_page_config(page_title="Custom Material XML Generator", page_icon="📐")
 
 # Mostrar banner si existe
 ruta_banner = os.path.join("static", "banner_inicio.png")
@@ -13,7 +13,7 @@ if os.path.exists(ruta_banner):
     st.image(ruta_banner, use_container_width=True)
 
 # Título visible debajo del banner
-st.title("📐 Custom Material XML")
+st.title("📐 Custom Material XML hola")
 
 # ─── Sidebar ───────────────────────────────────────────
 side = st.sidebar.radio("Menu", ("ℹ️ About", "❓ Help", "⚠️ Limitations"))
